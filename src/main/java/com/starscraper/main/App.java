@@ -20,13 +20,13 @@ public class App {
 
 		port(WebUtils.getHerokuAssignedPort());
 		staticFileLocation("/public");
-		String layout = "templates/layout.vtl";
+		String layout = "layout.vtl";
 
 		Gson gson = new Gson();
 
 		get("/", (request, response) -> {
 			Map<String, String> model = new HashMap<String, String>();	
-			model.put("template", "templates/hello.vtl");
+			model.put("template", "hello.vtl");
 			model.put("homePageActive", "active");
 			model.put("systemPageActive", "");
 			model.put("planetPageActive", "");
@@ -36,7 +36,7 @@ public class App {
 
 		get("/system", (request, response) -> {
 			Map<String, Object> model = new HashMap<String, Object>();
-			model.put("template", "templates/system.vtl");
+			model.put("template", "templatessystem.vtl");
 
 			model.put("homePageActive", "");
 			model.put("systemPageActive", "active");
@@ -55,7 +55,7 @@ public class App {
 
 		get("/planet", (request, response) -> {
 			Map<String, String> model = new HashMap<String, String>();
-			model.put("template", "templates/planet.vtl");
+			model.put("template", "planet.vtl");
 			model.put("planet", "Test");
 			model.put("homePageActive", "");
 			model.put("systemPageActive", "");
@@ -66,7 +66,7 @@ public class App {
 
 		get("/hello", (request, response) -> {
 			Map<String, String> model = new HashMap<String, String>();
-			model.put("template", "templates/hello.vtl");
+			model.put("template", "hello.vtl");
 			model.put("homePageActive", "");
 			model.put("systemPageActive", "");
 			model.put("planetPageActive", "");

@@ -1,1 +1,1 @@
-web: java -jar build/libs/Starscraper.jar
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/Starscraper.jar

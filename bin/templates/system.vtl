@@ -1,0 +1,26 @@
+<div class="page-header">
+	<h1 class="hidden-sm hidden-xs">
+		${starsystem.name} 
+		<a href="/system" class="btn btn-primary hidden-print visible-lg-inline visible-md-inline" role="button">Another!</a>
+	</h1>
+	<h1 class="hidden-lg hidden-md hidden-xs text-center">
+		${starsystem.name}
+		<a href="/system" class="btn btn-lg btn-primary hidden-print visible-sm-inline" role="button">Another!</a>
+	</h1>
+	<h1 class=" hidden-lg hidden-md hidden-sm text-center">
+		<a href="/system" class="btn btn-lg btn-primary hidden-print visible-xs-block" role="button">Another!</a>
+		<br>
+		${starsystem.name}
+	</h1>		
+</div>
+<div class = "row">	
+	<div class="col-lg-4 col-md-6 col-sm-8 col-xs-12">
+		<h2>${noplanets}</h2>
+		<ul style="list-style-type:none">
+			#foreach( $planet in $starsystem.planets )
+    		<li>${planet.name} - ${planet.condition}</li>
+    		#end
+		</ul>
+	</div>				
+</div>
+

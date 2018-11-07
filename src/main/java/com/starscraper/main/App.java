@@ -1,9 +1,8 @@
 package com.starscraper.main;
 
-import static spark.Spark.get;
-import static spark.Spark.port;
-import static spark.Spark.staticFileLocation;
+import static spark.Spark.*;
 
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,14 +11,19 @@ import com.starsystems.log.HerokuLogger;
 import com.starsystems.model.Starsystem;
 import com.starsystems.util.WebUtils;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.Version;
 import spark.ModelAndView;
-import spark.template.velocity.VelocityTemplateEngine;
+import spark.Spark;
+import spark.template.freemarker.FreeMarkerEngine;
 
 public class App {
 
 	public static void main(String[] args) {
 
 		HerokuLogger log = new HerokuLogger();
+		StringWriter writer = new StringWriter();
 
 		port(WebUtils.getHerokuAssignedPort());
 		staticFileLocation("/public");
@@ -28,14 +32,14 @@ public class App {
 		Gson gson = new Gson();
 
 		get("/", (request, response) -> {
-			Map<String, String> model = new HashMap<String, String>();
+			Map<String, String> model = new HashMap<String, String>();	
 			model.put("template", "templates/hello.vtl");
 			model.put("homePageActive", "active");
 			model.put("systemPageActive", "");
 			model.put("planetPageActive", "");
 			model.put("helloPageActive", "");
 			return new ModelAndView(model, layout);
-		}, new VelocityTemplateEngine());
+		}, new FreeMarkerEngine());
 
 		get("/system", (request, response) -> {
 			Map<String, Object> model = new HashMap<String, Object>();
@@ -55,7 +59,7 @@ public class App {
 			}
 			model.put("starsystem", system);
 			return new ModelAndView(model, layout);
-		}, new VelocityTemplateEngine());
+		}, new FreeMarkerEngine());
 
 		get("/planet", (request, response) -> {
 			Map<String, String> model = new HashMap<String, String>();
@@ -66,7 +70,7 @@ public class App {
 			model.put("planetPageActive", "active");
 			model.put("helloPageActive", "");
 			return new ModelAndView(model, layout);
-		}, new VelocityTemplateEngine());
+		}, new FreeMarkerEngine());
 
 		get("/hello", (request, response) -> {
 			Map<String, String> model = new HashMap<String, String>();
@@ -76,7 +80,7 @@ public class App {
 			model.put("planetPageActive", "");
 			model.put("helloPageActive", "active");
 			return new ModelAndView(model, layout);
-		}, new VelocityTemplateEngine());
+		}, new FreeMarkerEngine());
 		
 		get("/api/spaceships/list", (request, response) -> {
 		    return "Hello: " + request.params(":name");

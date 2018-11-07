@@ -13,7 +13,7 @@ apply plugin: 'java-library-distribution'
 apply plugin: 'application'
 
 mainClassName = 'com.starscraper.main.App'
-applicationName = 'starsystem-generator'
+applicationName = 'starscraper'
 defaultTasks = ['clean', 'jar']
 
 // In this section you declare where to find the dependencies of your project

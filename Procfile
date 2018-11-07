@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar build/libs/Starscraper.jar
+web: java $JAVA_OPTS -jar build/install/starscraper/Starscraper.jar

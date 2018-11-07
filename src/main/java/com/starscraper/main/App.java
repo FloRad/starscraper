@@ -1,29 +1,22 @@
 package com.starscraper.main;
 
-import static spark.Spark.*;
+import static spark.Spark.get;
+import static spark.Spark.port;
+import static spark.Spark.staticFileLocation;
 
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gson.Gson;
-import com.starsystems.log.HerokuLogger;
 import com.starsystems.model.Starsystem;
 import com.starsystems.util.WebUtils;
 
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.Version;
 import spark.ModelAndView;
-import spark.Spark;
 import spark.template.freemarker.FreeMarkerEngine;
 
 public class App {
 
 	public static void main(String[] args) {
-
-		HerokuLogger log = new HerokuLogger();
-		StringWriter writer = new StringWriter();
 
 		port(WebUtils.getHerokuAssignedPort());
 		staticFileLocation("/public");
@@ -51,7 +44,6 @@ public class App {
 			model.put("helloPageActive", "");
 
 			Starsystem system = new StarsystemGenerator().generateSystem();
-			log.info(gson.toJson(system));
 			if (system.getNumberOfPlanets() == 0) {
 				model.put("noplanets", "No planets");
 			} else {

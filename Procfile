@@ -1,1 +1,1 @@
-web: build/install/starscraper/bin/starscraper
+web: java -jar build/libs/Starscraper.jar

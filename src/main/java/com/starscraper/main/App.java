@@ -1,4 +1,4 @@
-package com.starsystems.main;
+package com.starscraper.main;
 
 import static spark.Spark.get;
 import static spark.Spark.port;
@@ -20,9 +20,8 @@ public class App {
 	public static void main(String[] args) {
 
 		HerokuLogger log = new HerokuLogger();
-		WebUtils webUtils = new WebUtils();
 
-		port(webUtils.getHerokuAssignedPort());
+		port(WebUtils.getHerokuAssignedPort());
 		staticFileLocation("/public");
 		String layout = "templates/layout.vtl";
 
@@ -78,6 +77,10 @@ public class App {
 			model.put("helloPageActive", "active");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
+		
+		get("/api/spaceships/list", (request, response) -> {
+		    return "Hello: " + request.params(":name");
+		});
 	}
 
 }

@@ -11,7 +11,7 @@ apply plugin: 'java'
 apply plugin: 'java-library-distribution'
 apply plugin: 'application'
 
-mainClassName = 'com.starsystems.main.App'
+mainClassName = 'com.starscraper.main.App'
 applicationName = 'starsystem-generator'
 defaultTasks = ['clean', 'jar']
 

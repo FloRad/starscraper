@@ -1,7 +1,6 @@
-package com.starsystems.main;
+package com.starscraper.main;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Random;
 
 import com.starsystems.log.HerokuLogger;
